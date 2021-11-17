@@ -33,7 +33,7 @@
             } else {
                 clearInterval(fadeEffect);
             }
-        }, 100);
+        }, {{ block.settings.fadeout_time }});
     }
 </script>
 {% schema %}
@@ -80,6 +80,18 @@
 "id": "loader_time",
 "label": "Time Out",
 "default": 2000
+},
+{
+"type": "color",
+"id": "color",
+"label": "Background",
+"default": "#eee"
+},
+{
+"type": "number",
+"id": "fadeout_time",
+"label": "fadeout time",
+"default": 100
 }
 ]
 }
