@@ -1,7 +1,10 @@
+{{ block.settings.template }}
 {% case block.settings.template %}
        {% when "blurred_gear_loader" %}
-           hello
-            {% include "blurred_gear_loader" %}
+           <script>
+               alert('render');
+           </script>
+            {% render "blurred_gear_loader" %}
 {% endcase %}
 <script>
     document.getElementById('eop-loader').setAttribute('style', 'width: 100%; height: 100%; background-color: {{ block.settings.background_hex }}; position: fixed; z-index: 9999999999');;
