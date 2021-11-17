@@ -1,0 +1,76 @@
+{% case block.settings.template %}
+       {% when "blurred_gear_loader" %}
+           hello
+            {% include "blurred_gear_loader" %}
+{% endcase %}
+<script>
+    document.getElementById('eop-loader').setAttribute('style', 'width: 100%; height: 100%; background-color: {{ block.settings.background_hex }}; position: fixed; z-index: 9999999999');;
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            fadeOutEffect();
+        }, {{ block.settings.loader_time }});
+    });
+    function fadeOutEffect() {
+        let fadeTarget = document.getElementById("eop-loader");
+        let fadeEffect = setInterval(function () {
+            if (!fadeTarget.style.opacity) {
+                fadeTarget.style.opacity = 1;
+            }
+            if (fadeTarget.style.opacity > 0) {
+                fadeTarget.style.opacity -= 0.1;
+                fadeTarget.remove();
+            } else {
+                clearInterval(fadeEffect);
+            }
+        }, 100);
+    }
+</script>
+
+{% schema %}
+{
+"name": "App Embed",
+"target": "body",
+"settings": [
+{
+"type": "select",
+"id": "template",
+"label": "Preloader",
+"default": "blurred_gear_loader",
+"options": [
+{
+"value": "blurred_gear_loader",
+"label": "Blurred Gear"
+},
+{
+"value": "rainbow",
+"label": "Rainbow"
+},
+{
+"value": "simple_loading",
+"label": "Simple Loading"
+},
+{
+"value": "stairs",
+"label": "Stairs"
+},
+{
+"value": "tree",
+"label": "Tree"
+}
+]
+},
+{
+"type": "color",
+"id": "color",
+"label": "Background",
+"default": "#eee"
+},
+{
+"type": "number",
+"id": "loader_time",
+"label": "Time Out",
+"default": 2000
+}
+]
+}
+{% endschema %}
