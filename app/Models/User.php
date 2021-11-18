@@ -4,14 +4,18 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Osiset\ShopifyApp\Contracts\ShopModel as IShopModel;
+use Osiset\ShopifyApp\Traits\ShopModel;
 
-class User extends Authenticatable
+class User extends Authenticatable implements IShopModel
 {
     use HasApiTokens, HasFactory, Notifiable;
-
+    use SoftDeletes;
+    use ShopModel;
     /**
      * The attributes that are mass assignable.
      *
@@ -21,6 +25,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'install_webhooks',
     ];
 
     /**
@@ -40,5 +45,11 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'install_webhooks' => 'boolean'
     ];
+
+    public function setting()
+    {
+        return $this->hasOne(Setting::class);
+    }
 }

@@ -1,4 +1,3 @@
-{{ block.settings.template }}
 {% case block.settings.template %}
     {% when 'blurred_gear_loader' %}
         {%- render 'blurred_gear_loader' -%}
@@ -6,8 +5,8 @@
         {%- render 'rainbow' -%}
     {% when 'simple_loading' %}
         {%- render 'simple_loading' -%}
-    {% when 'stairs' %}
-        {%- render 'stairs' -%}
+    {% comment %}{% when 'stairs' %}{% endcomment %}
+        {% comment %}{%- render 'stairs' -%}{% endcomment %}
     {% when 'tree' %}
         {%- render 'tree' -%}
 {% endcase %}
@@ -16,9 +15,7 @@
     container.setAttribute('style', 'top: 0;width: 100%; height: 100%; background-color: {{ block.settings.color }}; position: fixed; z-index: 9999999999');
 
     window.addEventListener('load', () => {
-        setTimeout(() => {
-            fadeOutEffect();
-        }, {{ block.settings.loader_time }});
+
     });
 
     function fadeOutEffect() {
@@ -29,7 +26,7 @@
             }
             if (fadeTarget.style.opacity > 0) {
                 fadeTarget.style.opacity -= 0.1;
-                fadeTarget.remove();
+                // fadeTarget.remove();
             } else {
                 clearInterval(fadeEffect);
             }
@@ -60,10 +57,6 @@
 "label": "Simple Loading"
 },
 {
-"value": "stairs",
-"label": "Stairs"
-},
-{
 "value": "tree",
 "label": "Tree"
 }
@@ -80,12 +73,6 @@
 "id": "loader_time",
 "label": "Time Out",
 "default": 2000
-},
-{
-"type": "color",
-"id": "color",
-"label": "Background",
-"default": "#eee"
 },
 {
 "type": "number",
