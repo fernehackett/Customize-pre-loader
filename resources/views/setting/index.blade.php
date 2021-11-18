@@ -26,7 +26,7 @@
 
                         <h5 class="text-2xl mt-2 font-normal leading-normal mt-0 mb-2 text-gray-800">How to use</h5>
                         <ol class="list-decimal ml-7">
-                            <li>From your Shopify admin, goto Online <span class="font-semibold">Store</span> > <span class="font-semibold">Theme</span>.</li>
+                            <li>From your Shopify admin, goto <span class="font-semibold">Online Store</span> > <span class="font-semibold">Theme</span>.</li>
                             <li>Find the theme that you want to edit, and then click <span class="font-semibold">Customize</span>.</li>
                             <li>Click to <span class="font-semibold">Theme Setting</span> (in left bottomm) > <span class="font-semibold">App Embeds</span>.</li>
                             <li><span class="font-semibold">Enable Preloadify</span> and customize background color, time or select Preloader.</li>
