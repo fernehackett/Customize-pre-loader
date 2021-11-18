@@ -15,7 +15,7 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        CreateWebHooks::dispatch(Auth::user());
+//        CreateWebHooks::dispatch(Auth::user());
         $loaders = Loader::select('name', 'id')->get();
         return view('setting.index', compact('loaders'));
     }

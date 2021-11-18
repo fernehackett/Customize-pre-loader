@@ -12,11 +12,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['middleware' => ['verify.shopify']], function () {
+    Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home');
+    Route::post('/uninstall', 'App\Http\Controllers\HomeController@uninstall')->name('uninstall');
+    Route::resource('settings', 'App\Http\Controllers\SettingController');
 
-Route::get('/', 'App\Http\Controllers\HomeController@index')->middleware(['verify.shopify'])->name('home');
-Route::post('/uninstall', 'App\Http\Controllers\HomeController@uninstall')->name('uninstall');
-Route::resource('settings', 'App\Http\Controllers\SettingController');
-
+});
 Route::post('customer/data-request', 'App\Http\Controllers\HomeController@customerDataRequest');
 Route::post('customer/redact', 'App\Http\Controllers\HomeController@customerRedact');
 Route::post('shop/redact', 'App\Http\Controllers\HomeController@shopRedact');

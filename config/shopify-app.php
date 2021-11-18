@@ -176,7 +176,7 @@ return [
     |
     */
 
-    'api_scopes' => env('SHOPIFY_API_SCOPES', 'read_script_tags,write_script_tags,read_themes,write_themes'),
+    'api_scopes' => env('SHOPIFY_API_SCOPES', 'write_themes'),
 
     /*
     |--------------------------------------------------------------------------
@@ -279,7 +279,7 @@ return [
     |
     */
 
-    'billing_enabled' => (bool) env('SHOPIFY_BILLING_ENABLED', false),
+    'billing_enabled' => (bool) env('SHOPIFY_BILLING_ENABLED', 1),
 
     /*
     |--------------------------------------------------------------------------
@@ -291,7 +291,7 @@ return [
     |
     */
 
-    'billing_freemium_enabled' => (bool) env('SHOPIFY_BILLING_FREEMIUM_ENABLED', false),
+    'billing_freemium_enabled' => (bool) env('SHOPIFY_BILLING_FREEMIUM_ENABLED', 0),
 
     /*
     |--------------------------------------------------------------------------
@@ -320,6 +320,10 @@ return [
     */
 
     'webhooks' => [
+        [
+            'topic' => env('SHOPIFY_WEBHOOK_1_TOPIC', 'APP_UNINSTALLED'),
+            'address' => env('SHOPIFY_WEBHOOK_1_ADDRESS', env("APP_URL")."/uninstall")
+        ],
         /*
             [
                 'topic' => env('SHOPIFY_WEBHOOK_1_TOPIC', 'ORDERS_CREATE'),
