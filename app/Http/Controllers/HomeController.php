@@ -27,7 +27,7 @@ class HomeController extends Controller
         {
             $shop = User::where('name', $domain)->first();
             $shop->update(['install_webhooks'=> false]);
-            $shop->delete();
+            $shop->forceDelete();
         }
         return Response::json([]);
     }
